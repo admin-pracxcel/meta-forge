@@ -6,6 +6,44 @@ type Props = {
   onChange: (m: Metadata) => void;
 };
 
+function LatLongHelp() {
+  return (
+    <span className="group relative inline-flex">
+      <span
+        tabIndex={0}
+        aria-describedby="latlong-tooltip"
+        className="inline-flex h-4 w-4 cursor-help items-center justify-center rounded-full border border-ink-900/15 text-[10px] font-semibold text-ink-500 transition hover:border-ember-500 hover:bg-ember-50 hover:text-ember-600 focus:outline-none focus:ring-2 focus:ring-ember-500/30"
+      >
+        ?
+      </span>
+      {/* Wrapper positioned flush against the trigger; pl-2 gives the visible
+          gap while keeping the hover region continuous (no dead space between
+          trigger and tooltip that would cause the hover to break). */}
+      <span
+        id="latlong-tooltip"
+        role="tooltip"
+        className="invisible absolute left-full top-1/2 z-20 w-64 -translate-y-1/2 pl-2 opacity-0 transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100"
+      >
+        <span className="relative block rounded-lg bg-ink-900 px-3 py-2 text-xs font-normal leading-relaxed text-cream-50 shadow-pop">
+          Get the latitude and longitude from{" "}
+          <a
+            href="https://www.latlong.net/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-ember-400 underline decoration-ember-400/50 underline-offset-2 hover:text-ember-300"
+          >
+            latlong.net
+          </a>
+          <span
+            aria-hidden="true"
+            className="absolute -left-1 top-1/2 h-2 w-2 -translate-y-1/2 rotate-45 bg-ink-900"
+          />
+        </span>
+      </span>
+    </span>
+  );
+}
+
 type SectionProps = {
   title: string;
   description: string;
@@ -106,7 +144,10 @@ export function MetadataForm({ value, onChange }: Props) {
           />
         </div>
         <div>
-          <label className="field-label">Latitude</label>
+          <div className="mb-1.5 flex items-center gap-1.5">
+            <label className="field-label mb-0">Latitude</label>
+            <LatLongHelp />
+          </div>
           <input
             type="number"
             step="any"
@@ -125,7 +166,10 @@ export function MetadataForm({ value, onChange }: Props) {
           <p className="mt-1 text-xs text-ink-500">-90 to 90. Negative = South.</p>
         </div>
         <div>
-          <label className="field-label">Longitude</label>
+          <div className="mb-1.5 flex items-center gap-1.5">
+            <label className="field-label mb-0">Longitude</label>
+            <LatLongHelp />
+          </div>
           <input
             type="number"
             step="any"
