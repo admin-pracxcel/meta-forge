@@ -4,8 +4,8 @@ import { readFileSync } from "node:fs";
 import piexif from "piexifjs";
 import extractChunks from "png-chunks-extract";
 import encodeChunks from "png-chunks-encode";
-import handler, { MAX_BODY_BYTES, parseCoordinate } from "../api/process.ts";
-import { detectFormat } from "../src/lib/exif/index.ts";
+import { POST as handler, MAX_BODY_BYTES, parseCoordinate } from "../api/process.js";
+import { detectFormat } from "../src/lib/exif/index.js";
 
 const KEY = "test-key";
 const URL_ = "http://localhost/api/process";

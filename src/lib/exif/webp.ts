@@ -1,6 +1,6 @@
-import type { FormatHandler, Metadata } from "./types";
-import { concat, textEncode } from "./binary";
-import { buildExifPayload, buildXmpPacket } from "./builders";
+import type { FormatHandler, Metadata } from "./types.js";
+import { concat, textEncode } from "./binary.js";
+import { buildExifPayload, buildXmpPacket } from "./builders.js";
 
 /*
  * WebP is a RIFF container:

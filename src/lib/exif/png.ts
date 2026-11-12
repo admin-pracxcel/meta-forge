@@ -1,8 +1,8 @@
 import extractChunks from "png-chunks-extract";
 import encodeChunks from "png-chunks-encode";
-import type { FormatHandler, Metadata } from "./types";
-import { concat, textEncode } from "./binary";
-import { buildExifPayload, buildXmpPacket } from "./builders";
+import type { FormatHandler, Metadata } from "./types.js";
+import { concat, textEncode } from "./binary.js";
+import { buildExifPayload, buildXmpPacket } from "./builders.js";
 
 type Chunk = { name: string; data: Uint8Array };
 

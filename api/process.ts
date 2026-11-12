@@ -1,5 +1,11 @@
 // POST /api/process — strip all metadata from an image and stamp author + GPS.
 // Vercel Node.js function using the web-standard Request/Response handler.
+//
+// Vercel compiles this file with tsc into Node ESM and renames it to .js
+// without rewriting import specifiers, so every relative import here and in
+// src/lib/exif must carry a ".js" extension. It dispatches *named* method
+// exports (GET/POST/...) as web handlers; a default export would be invoked
+// as a Node (req, res) listener instead. test/vercel-emit.test.ts guards both.
 // See docs/superpowers/specs/2026-11-12-exif-api-endpoint-design.md.
 import { timingSafeEqual } from "node:crypto";
 import {
@@ -7,7 +13,7 @@ import {
   mimeFor,
   extensionFor,
   type Metadata,
-} from "../src/lib/exif/index.ts";
+} from "../src/lib/exif/index.js";
 
 /** Vercel serverless request-body limit. */
 export const MAX_BODY_BYTES = 4_718_592;
@@ -52,7 +58,7 @@ function textField(form: FormData, name: string): string | null {
   return typeof v === "string" ? v : null;
 }
 
-export default async function handler(request: Request): Promise<Response> {
+async function handler(request: Request): Promise<Response> {
   if (request.method !== "POST") return json(405, "Method not allowed. Use POST.");
 
   const expectedKey = process.env.METAFORGE_API_KEY;
@@ -110,3 +116,15 @@ export default async function handler(request: Request): Promise<Response> {
     return json(500, `Processing failed: ${message}`);
   }
 }
+
+// Every verb routes to the same handler so non-POST requests get the spec's
+// JSON 405 rather than Vercel's plain-text fallback.
+export {
+  handler as GET,
+  handler as HEAD,
+  handler as OPTIONS,
+  handler as POST,
+  handler as PUT,
+  handler as DELETE,
+  handler as PATCH,
+};

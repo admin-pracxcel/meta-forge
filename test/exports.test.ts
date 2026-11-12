@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { detectFormat, mimeFor, extensionFor } from "../src/lib/exif/index.ts";
+import { detectFormat, mimeFor, extensionFor } from "../src/lib/exif/index.js";
 
 test("library re-exports format helpers", () => {
   assert.equal(mimeFor("png"), "image/png");

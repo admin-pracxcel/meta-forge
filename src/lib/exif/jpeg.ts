@@ -1,7 +1,7 @@
 import piexif from "piexifjs";
-import type { FormatHandler, Metadata } from "./types";
-import { concat, textEncode, u8ToBinaryString } from "./binary";
-import { buildExifPayload, buildXmpPacket } from "./builders";
+import type { FormatHandler, Metadata } from "./types.js";
+import { concat, textEncode, u8ToBinaryString } from "./binary.js";
+import { buildExifPayload, buildXmpPacket } from "./builders.js";
 
 const XMP_NS = "http://ns.adobe.com/xap/1.0/\0";
 

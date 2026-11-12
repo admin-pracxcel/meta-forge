@@ -1,4 +1,4 @@
-import type { ImageFormat } from "./types";
+import type { ImageFormat } from "./types.js";
 
 export function detectFormat(bytes: Uint8Array): ImageFormat {
   if (bytes.length < 12) return "unknown";

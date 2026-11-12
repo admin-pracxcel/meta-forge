@@ -1,6 +1,6 @@
 import piexif from "piexifjs";
-import type { Metadata } from "./types";
-import { binaryStringToU8 } from "./binary";
+import type { Metadata } from "./types.js";
+import { binaryStringToU8 } from "./binary.js";
 
 function escapeXml(s: string): string {
   return s

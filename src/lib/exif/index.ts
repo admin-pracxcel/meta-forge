@@ -1,8 +1,8 @@
-import type { FormatHandler, ImageFormat, Metadata } from "./types";
-import { detectFormat } from "./formats";
-import { jpegHandler } from "./jpeg";
-import { pngHandler } from "./png";
-import { webpHandler } from "./webp";
+import type { FormatHandler, ImageFormat, Metadata } from "./types.js";
+import { detectFormat } from "./formats.js";
+import { jpegHandler } from "./jpeg.js";
+import { pngHandler } from "./png.js";
+import { webpHandler } from "./webp.js";
 
 export type ProcessResult = {
   bytes: Uint8Array;
@@ -33,5 +33,5 @@ export function stripAndApply(bytes: Uint8Array, meta: Metadata): ProcessResult 
   return { bytes: finalBytes, format };
 }
 
-export { detectFormat, mimeFor, extensionFor } from "./formats";
-export type { Metadata, ImageFormat } from "./types";
+export { detectFormat, mimeFor, extensionFor } from "./formats.js";
+export type { Metadata, ImageFormat } from "./types.js";
