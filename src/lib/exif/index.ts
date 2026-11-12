@@ -33,5 +33,5 @@ export function stripAndApply(bytes: Uint8Array, meta: Metadata): ProcessResult 
   return { bytes: finalBytes, format };
 }
 
-export { detectFormat } from "./formats";
+export { detectFormat, mimeFor, extensionFor } from "./formats";
 export type { Metadata, ImageFormat } from "./types";
